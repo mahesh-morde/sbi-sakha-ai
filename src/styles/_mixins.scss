@@ -1,0 +1,59 @@
+@use "variables" as *;
+
+// Typography
+@mixin heading-display {
+  font-family: $font-family-display;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: $color-white;
+}
+
+@mixin heading-h1 {
+  font-family: $font-family-display;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: $color-white;
+}
+
+@mixin heading-h2 {
+  font-family: $font-family-display;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: $color-white;
+}
+
+@mixin text-body {
+  font-family: $font-family-sans;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: $color-text-secondary;
+}
+
+// Glassmorphism Card
+@mixin glass-card {
+  background: $glass-bg;
+  backdrop-filter: blur($glass-blur);
+  -webkit-backdrop-filter: blur($glass-blur);
+  border: 1px solid $glass-border;
+  border-radius: $border-radius-md;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+// Flex Centering
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Hover Lift Effect
+@mixin hover-lift {
+  transition: transform $transition-base, box-shadow $transition-base;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 240, 255, 0.1); // Cyan subtle glow
+  }
+}

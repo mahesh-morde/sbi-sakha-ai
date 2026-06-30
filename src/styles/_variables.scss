@@ -1,0 +1,51 @@
+// ==========================================
+// COLOR SYSTEM
+// ==========================================
+
+// Primary & Backgrounds
+$color-bg-navy: #0A1128; // Deep Navy Background
+$color-sbi-blue: #2864FF; // SBI Blue
+$color-white: #FFFFFF;
+$color-text-primary: rgba(255, 255, 255, 0.95);
+$color-text-secondary: rgba(255, 255, 255, 0.65);
+
+// Accents
+$color-cyan: #00F0FF; // Electric Cyan
+$color-purple: #9D4EDD; // Royal Purple
+
+// Status Colors
+$color-success: #10B981; // Emerald
+$color-warning: #F59E0B; // Amber
+$color-danger: #EF4444; // Coral Red
+
+// Glassmorphism
+$glass-bg: rgba(255, 255, 255, 0.03);
+$glass-border: rgba(255, 255, 255, 0.08);
+$glass-blur: 16px;
+
+// ==========================================
+// TYPOGRAPHY
+// ==========================================
+$font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
+$font-family-display: 'Outfit', 'Space Grotesk', system-ui, -apple-system, sans-serif;
+
+// ==========================================
+// ANIMATION & TRANSITIONS
+// ==========================================
+$ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+$transition-fast: 0.2s $ease-spring;
+$transition-base: 0.4s $ease-spring;
+$transition-slow: 0.8s $ease-spring;
+
+// ==========================================
+// SPACING & SIZING
+// ==========================================
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 4rem;
+$spacing-xl: 8rem;
+
+$border-radius-sm: 8px;
+$border-radius-md: 16px;
+$border-radius-lg: 24px;

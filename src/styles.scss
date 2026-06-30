@@ -1,0 +1,137 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+@use "styles/animations" as *;
+@import 'bootstrap/scss/bootstrap-grid'; 
+
+:root {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --card-bg: rgba(15, 23, 42, 0.04);
+  --card-border: rgba(15, 23, 42, 0.08);
+  --cyan: #2864FF; // SBI Blue as primary for light mode
+  --purple: #9D4EDD;
+  --radial-glow-1: radial-gradient(ellipse at top right, rgba(40, 100, 255, 0.08) 0%, transparent 60%);
+  --radial-glow-2: radial-gradient(ellipse at bottom left, rgba(157, 78, 221, 0.06) 0%, transparent 60%);
+}
+
+body.dark-mode {
+  --bg-primary: #0A1128;
+  --bg-secondary: #111A3A;
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --cyan: #00F0FF; // Electric Cyan
+  --purple: #9D4EDD;
+  --radial-glow-1: radial-gradient(ellipse at top right, rgba(0, 240, 255, 0.12) 0%, transparent 60%);
+  --radial-glow-2: radial-gradient(ellipse at bottom left, rgba(157, 78, 221, 0.10) 0%, transparent 60%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  font-family: $font-family-sans;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  transition: background $transition-base, color $transition-base;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-display;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+// Slide Mechanics
+.slide {
+  width: 100%;
+  min-height: 100vh;
+  padding: 48px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-primary);
+  border-bottom: 2px solid var(--card-border);
+  transition: background $transition-base;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--radial-glow-1), var(--radial-glow-2);
+    pointer-events: none;
+  }
+}
+
+.slide-number {
+  position: absolute;
+  top: 20px;
+  right: 32px;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  font-family: $font-family-display;
+}
+
+.slide-footer {
+  position: absolute;
+  bottom: 20px;
+  left: 64px;
+  right: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  .brand {
+    font-family: $font-family-display;
+    font-weight: 800;
+    font-size: 14px;
+    background: linear-gradient(90deg, var(--cyan), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .footer-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+}
+
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur($glass-blur);
+  -webkit-backdrop-filter: blur($glass-blur);
+  border: 1px solid var(--card-border);
+  border-radius: $border-radius-md;
+}
+
+.text-cyan { color: var(--cyan); }
+.text-purple { color: var(--purple); }
+
