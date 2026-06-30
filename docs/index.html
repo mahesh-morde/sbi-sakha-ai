@@ -12,7 +12,30 @@
 
 <style>
   :root {
-    /* CINEMATIC DARK THEME (DEFAULT) */
+    /* LIGHT THEME (DEFAULT) */
+    --bg-base: #f8fafc;
+    --bg-surface: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    
+    --sbi-blue: #2864FF;
+    --cyan: #06b6d4;
+    --purple: #9333ea;
+    --emerald: #10b981;
+    --amber: #f59e0b;
+    --rose: #e11d48;
+    
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(15, 23, 42, 0.1);
+    --glass-hover: rgba(40, 100, 255, 0.05);
+    
+    --glow-cyan: 0 10px 30px rgba(6, 182, 212, 0.15);
+    --glow-sbi: 0 10px 30px rgba(40, 100, 255, 0.15);
+  }
+
+  [data-theme="dark"] {
+    /* CINEMATIC DARK THEME */
     --bg-base: #000000;
     --bg-surface: #0a0a0a;
     --text-primary: #ffffff;
@@ -32,17 +55,6 @@
     
     --glow-cyan: 0 0 80px rgba(0, 240, 255, 0.15);
     --glow-sbi: 0 0 80px rgba(40, 100, 255, 0.15);
-  }
-
-  [data-theme="light"] {
-    --bg-base: #f8fafc;
-    --bg-surface: #ffffff;
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --text-muted: #94a3b8;
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(15, 23, 42, 0.1);
-    --glass-hover: rgba(40, 100, 255, 0.05);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -281,30 +293,34 @@
   }
 
   /* ── 8. CUSTOMER STORY (Rahul) ── */
-  .story-line {
-    border-left: 2px dashed var(--glass-border);
-    padding-left: 48px;
-    margin-left: 24px;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  .story-step {
+  .timeline {
     position: relative;
-    margin-bottom: 64px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 0;
   }
-  .story-step:last-child { margin-bottom: 0; }
-  .story-dot {
-    position: absolute;
-    left: -61px;
-    top: 0;
-    width: 24px;
-    height: 24px;
-    background: var(--bg-surface);
-    border: 4px solid var(--sbi-blue);
-    border-radius: 50%;
+  .timeline::before {
+    content: ''; position: absolute; top: 0; bottom: 0; left: 50%;
+    width: 2px; background: linear-gradient(to bottom, var(--sbi-blue), var(--purple));
+    transform: translateX(-50%); opacity: 0.3;
   }
-  .story-title { font-size: 2rem; font-weight: 700; margin-bottom: 8px; font-family: 'Outfit', sans-serif;}
-  .story-desc { font-size: 1.25rem; color: var(--text-secondary); }
+  .timeline-item {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 60px; position: relative;
+  }
+  .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+  .timeline-content {
+    width: 45%;
+  }
+  .timeline-dot {
+    width: 20px; height: 20px; background: var(--bg-surface);
+    border: 4px solid var(--cyan); border-radius: 50%;
+    position: absolute; left: 50%; transform: translateX(-50%);
+    box-shadow: 0 0 20px var(--cyan);
+    z-index: 2;
+  }
+  .story-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; font-family: 'Outfit', sans-serif;}
+  .story-desc { font-size: 1rem; color: var(--text-secondary); }
 
   /* ── 9. CLEAN ARCHITECTURE ── */
   .clean-arch {
@@ -427,6 +443,10 @@
     .sub-grid { grid-template-columns: 1fr; gap: 8px; }
     .stat-huge { font-size: 4rem; }
     .stat-huge span { font-size: 2.5rem; }
+    .timeline::before { left: 30px; }
+    .timeline-item, .timeline-item:nth-child(even) { flex-direction: column; align-items: flex-start; padding-left: 80px; }
+    .timeline-content { width: 100%; }
+    .timeline-dot { left: 30px; }
   }
 </style>
 </head>
@@ -436,7 +456,7 @@
 
 <!-- THEME TOGGLE -->
 <button id="themeToggle" class="theme-btn" aria-label="Toggle Theme">
-  <i data-lucide="sun" id="themeIcon"></i>
+  <i data-lucide="moon" id="themeIcon"></i>
 </button>
 
 <!-- 1. HERO -->
@@ -464,16 +484,16 @@
   <div class="container">
     <div class="row reveal">
       <div class="col-md-4 stat-block">
-        <div class="stat-huge stat-counter" data-target="68">0<span>%</span></div>
-        <div class="stat-label">Customers never use investment products</div>
-      </div>
-      <div class="col-md-4 stat-block">
-        <div class="stat-huge stat-counter" data-target="82">0<span>%</span></div>
-        <div class="stat-label">Customers desperately need financial guidance</div>
+        <div class="stat-huge stat-counter" data-target="72">0<span>%</span></div>
+        <div class="stat-label">Consumers choose banks based on personalized experiences</div>
       </div>
       <div class="col-md-4 stat-block">
         <div class="stat-huge stat-counter" data-target="40">0<span>%</span></div>
-        <div class="stat-label">Users abandon digital journeys due to friction</div>
+        <div class="stat-label">Receive absolutely no personalized financial guidance</div>
+      </div>
+      <div class="col-md-4 stat-block">
+        <div class="stat-huge stat-counter" data-target="68">0<span>%</span></div>
+        <div class="stat-label">Abandon digital banking applications due to friction</div>
       </div>
     </div>
   </div>
@@ -632,38 +652,62 @@
       <p>People remember stories, not features. Meet Rahul.</p>
     </div>
     
-    <div class="story-line reveal delay-1">
-      <div class="story-step">
-        <div class="story-dot"></div>
-        <div class="story-title">Rahul joins SBI</div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot" style="border-color: var(--sbi-blue)"></div>
+        <div class="timeline-content glass-card" style="padding: 24px;">
+          <div class="story-title">Rahul joins SBI</div>
+          <div class="story-desc">Opens his first account online.</div>
+        </div>
       </div>
-      <div class="story-step">
-        <div class="story-dot"></div>
-        <div class="story-title" style="color:var(--cyan)">AI Welcomes Him</div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot" style="border-color: var(--cyan)"></div>
+        <div class="timeline-content glass-card" style="padding: 24px;">
+          <div class="story-title" style="color:var(--cyan)">AI Welcomes Him</div>
+          <div class="story-desc">Aarambh guides him in his native language.</div>
+        </div>
       </div>
-      <div class="story-step">
-        <div class="story-dot"></div>
-        <div class="story-title">Helps KYC</div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot" style="border-color: var(--sbi-blue)"></div>
+        <div class="timeline-content glass-card" style="padding: 24px;">
+          <div class="story-title">Helps KYC</div>
+          <div class="story-desc">Video KYC completed seamlessly.</div>
+        </div>
       </div>
-      <div class="story-step">
-        <div class="story-dot"></div>
-        <div class="story-title" style="color:var(--emerald)">Salary Credited</div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot" style="border-color: var(--emerald)"></div>
+        <div class="timeline-content glass-card" style="padding: 24px;">
+          <div class="story-title" style="color:var(--emerald)">Salary Credited</div>
+          <div class="story-desc">Mitra congratulates him dynamically.</div>
+        </div>
       </div>
-      <div class="story-step">
-        <div class="story-dot"></div>
-        <div class="story-title">Suggests SIP</div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot" style="border-color: var(--sbi-blue)"></div>
+        <div class="timeline-content glass-card" style="padding: 24px;">
+          <div class="story-title">Suggests SIP</div>
+          <div class="story-desc">Nivesh sets up automated investments.</div>
+        </div>
       </div>
-      <div class="story-step">
-        <div class="story-dot"></div>
-        <div class="story-title" style="color:var(--rose)">Detects Fraud</div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot" style="border-color: var(--rose)"></div>
+        <div class="timeline-content glass-card" style="padding: 24px;">
+          <div class="story-title" style="color:var(--rose)">Detects Fraud</div>
+          <div class="story-desc">Suraksha blocks a suspicious transaction.</div>
+        </div>
       </div>
-      <div class="story-step">
-        <div class="story-dot"></div>
-        <div class="story-title">Helps Home Loan</div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot" style="border-color: var(--sbi-blue)"></div>
+        <div class="timeline-content glass-card" style="padding: 24px;">
+          <div class="story-title">Helps Home Loan</div>
+          <div class="story-desc">Pragati pre-approves an EMI plan.</div>
+        </div>
       </div>
-      <div class="story-step">
-        <div class="story-dot"></div>
-        <div class="story-title" style="color:var(--purple)">Retirement Planning</div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot" style="border-color: var(--purple)"></div>
+        <div class="timeline-content glass-card" style="padding: 24px;">
+          <div class="story-title" style="color:var(--purple)">Retirement Planning</div>
+          <div class="story-desc">A lifelong relationship built on trust.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -847,9 +891,14 @@
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
         
-        if (entry.target.classList.contains('stat-counter') || entry.target.querySelector('.stat-counter')) {
-          const stat = entry.target.classList.contains('stat-counter') ? entry.target : entry.target.querySelector('.stat-counter');
-          animateValue(stat, 0, parseInt(stat.getAttribute('data-target')), 2000);
+        const stats = entry.target.querySelectorAll('.stat-counter');
+        if (stats.length > 0) {
+          stats.forEach(stat => {
+            animateValue(stat, 0, parseInt(stat.getAttribute('data-target')), 2000);
+          });
+          revealObserver.unobserve(entry.target);
+        } else if (entry.target.classList.contains('stat-counter')) {
+          animateValue(entry.target, 0, parseInt(entry.target.getAttribute('data-target')), 2000);
           revealObserver.unobserve(entry.target);
         }
       }
