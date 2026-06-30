@@ -97,6 +97,21 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+  
+  @keyframes gradient-pan {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .text-gradient-animated {
+    background: linear-gradient(to right, var(--cyan), var(--sbi-blue), var(--purple), var(--cyan));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-pan 4s linear infinite;
+  }
 
   /* ── THEME BUTTON ── */
   .theme-btn {
@@ -431,6 +446,8 @@
   .delay-3 { transition-delay: 0.3s; }
   .delay-4 { transition-delay: 0.4s; }
   .delay-5 { transition-delay: 0.5s; }
+  .delay-6 { transition-delay: 0.6s; }
+  .delay-7 { transition-delay: 0.7s; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 992px) {
@@ -466,13 +483,13 @@
     <div class="row justify-content-center">
       <div class="col-lg-12">
         <span class="hero-intro reveal">Introducing</span>
-        <h1 class="hero-title-main text-gradient-sbi reveal delay-1">SAKHA AI</h1>
-        <h2 class="hero-tagline reveal delay-2">
-          Banking that Thinks.<br>
-          Banking that Guides.<br>
-          Banking that Grows with You.
+        <h1 class="hero-title-main text-gradient-animated reveal delay-1">SAKHA AI</h1>
+        <h2 class="hero-tagline">
+          <span class="reveal delay-2" style="display:inline-block;">Banking that Thinks.</span><br>
+          <span class="reveal delay-3" style="display:inline-block;">Banking that Guides.</span><br>
+          <span class="reveal delay-4" style="display:inline-block;">Banking that Grows with You.</span>
         </h2>
-        <p class="hero-desc reveal delay-3">
+        <p class="hero-desc reveal delay-5">
           An Agentic Banking Companion designed to seamlessly orchestrate your entire financial life.
         </p>
       </div>
