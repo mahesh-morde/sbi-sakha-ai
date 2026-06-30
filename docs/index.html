@@ -12,35 +12,12 @@
 
 <style>
   :root {
-    /* LIGHT THEME (DEFAULT) */
-    --bg-base: #f8fafc;
-    --bg-surface: #ffffff;
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --text-muted: #94a3b8;
-    
-    --sbi-blue: #2864FF;
-    --cyan: #06b6d4;
-    --purple: #9333ea;
-    --emerald: #10b981;
-    --amber: #f59e0b;
-    --rose: #e11d48;
-    
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(15, 23, 42, 0.1);
-    --glass-hover: rgba(40, 100, 255, 0.2);
-    
-    --glow-cyan: 0 10px 30px rgba(6, 182, 212, 0.15);
-    --glow-purple: 0 10px 30px rgba(147, 51, 234, 0.15);
-  }
-
-  [data-theme="dark"] {
-    /* DARK THEME */
-    --bg-base: #050B14;
-    --bg-surface: #0A1128;
+    /* CINEMATIC DARK THEME (DEFAULT) */
+    --bg-base: #000000;
+    --bg-surface: #0a0a0a;
     --text-primary: #ffffff;
-    --text-secondary: #9ca3af;
-    --text-muted: #6b7280;
+    --text-secondary: #a1a1aa;
+    --text-muted: #52525b;
     
     --sbi-blue: #2864FF;
     --cyan: #00F0FF;
@@ -51,10 +28,21 @@
     
     --glass-bg: rgba(255, 255, 255, 0.03);
     --glass-border: rgba(255, 255, 255, 0.08);
-    --glass-hover: rgba(0, 240, 255, 0.15);
+    --glass-hover: rgba(0, 240, 255, 0.1);
     
-    --glow-cyan: 0 0 40px rgba(0, 240, 255, 0.15);
-    --glow-purple: 0 0 40px rgba(157, 78, 221, 0.15);
+    --glow-cyan: 0 0 80px rgba(0, 240, 255, 0.15);
+    --glow-sbi: 0 0 80px rgba(40, 100, 255, 0.15);
+  }
+
+  [data-theme="light"] {
+    --bg-base: #f8fafc;
+    --bg-surface: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(15, 23, 42, 0.1);
+    --glass-hover: rgba(40, 100, 255, 0.05);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -65,15 +53,15 @@
     color: var(--text-secondary);
     line-height: 1.6;
     overflow-x: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.5s ease;
   }
   
   /* ── BACKGROUND GLOWS ── */
   .bg-glows {
     position: fixed; inset: 0; pointer-events: none; z-index: -1;
     background: 
-      radial-gradient(circle at 15% 50%, rgba(40, 100, 255, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 85% 30%, rgba(157, 78, 221, 0.05) 0%, transparent 50%);
+      radial-gradient(circle at 50% 0%, rgba(40, 100, 255, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 100% 100%, rgba(157, 78, 221, 0.1) 0%, transparent 40%);
   }
 
   /* ── TYPOGRAPHY ── */
@@ -84,14 +72,14 @@
   }
   
   .text-gradient {
-    background: linear-gradient(135deg, var(--text-primary) 0%, var(--cyan) 100%);
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-muted) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   
   .text-gradient-sbi {
-    background: linear-gradient(135deg, var(--sbi-blue) 0%, var(--cyan) 100%);
+    background: linear-gradient(135deg, var(--cyan) 0%, var(--sbi-blue) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -106,32 +94,28 @@
     cursor: pointer; color: var(--text-primary); 
     backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   }
-  .theme-btn:hover {
-    transform: scale(1.1);
-    border-color: var(--cyan);
-  }
+  .theme-btn:hover { transform: scale(1.1); border-color: var(--cyan); }
 
   /* ── LAYOUT ── */
   section {
-    padding: 120px 0;
+    padding: 160px 0;
     position: relative;
     border-bottom: 1px solid var(--glass-border);
   }
   
   .section-header {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 100px;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
   }
   
   .section-header h2 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 800;
-    letter-spacing: -1px;
+    letter-spacing: -2px;
     margin-bottom: 24px;
   }
   
@@ -145,7 +129,7 @@
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     border-radius: 24px;
-    padding: 40px;
+    padding: 48px;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -160,39 +144,6 @@
     box-shadow: var(--glow-cyan);
   }
 
-  .icon-box {
-    width: 64px;
-    height: 64px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 24px;
-    background: rgba(40, 100, 255, 0.05);
-  }
-
-  .btn-primary {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--sbi-blue) 0%, var(--cyan) 100%);
-    color: #fff;
-    padding: 16px 32px;
-    border-radius: 100px;
-    font-family: 'Outfit', sans-serif;
-    font-weight: 700;
-    font-size: 1.1rem;
-    text-decoration: none;
-    transition: all 0.3s;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 10px 20px rgba(0, 240, 255, 0.2);
-  }
-  
-  .btn-primary:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 30px rgba(0, 240, 255, 0.4);
-    color: #fff;
-  }
-
   /* ── 1. HERO SECTION ── */
   .hero-section {
     min-height: 100vh;
@@ -204,218 +155,278 @@
     border-bottom: none;
   }
   
-  .hero-title {
-    font-size: 6rem;
+  .hero-intro {
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    display: block;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .hero-title-main {
+    font-size: 10rem; /* MASSIVE */
     font-weight: 900;
-    letter-spacing: -3px;
-    line-height: 1;
-    margin: 24px 0;
+    letter-spacing: -6px;
+    line-height: 0.9;
+    margin-bottom: 64px;
   }
   
-  .hero-subtitle {
-    font-size: 2rem;
+  .hero-tagline {
+    font-size: 3rem;
     font-weight: 300;
     color: var(--text-primary);
-    margin-bottom: 32px;
-    font-family: 'Outfit', sans-serif;
+    line-height: 1.3;
+    margin-bottom: 48px;
+    letter-spacing: -1px;
   }
   
   .hero-desc {
     font-size: 1.25rem;
-    max-width: 700px;
-    margin: 0 auto 48px;
+    max-width: 600px;
+    margin: 0 auto;
     color: var(--text-secondary);
   }
 
-  /* ── 3. COMPARISON TABLE ── */
-  .comparison-row {
-    display: flex;
-    align-items: center;
-    padding: 24px 0;
-    border-bottom: 1px solid var(--glass-border);
-  }
-  .comparison-row:last-child { border: none; }
-  .comp-left, .comp-right { flex: 1; font-size: 1.25rem; font-weight: 600; }
-  .comp-left { color: var(--text-muted); text-align: right; padding-right: 40px; }
-  .comp-right { color: var(--cyan); text-align: left; padding-left: 40px; font-family: 'Outfit', sans-serif;}
-  .comp-vs {
-    background: rgba(128,128,128,0.1);
-    border-radius: 50%; width: 40px; height: 40px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.8rem; font-weight: 700; color: var(--text-secondary);
-  }
-
-  /* ── 6. TIMELINE (JOURNEY) ── */
-  .timeline {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px 0;
-  }
-  .timeline::before {
-    content: ''; position: absolute; top: 0; bottom: 0; left: 50%;
-    width: 2px; background: linear-gradient(to bottom, var(--sbi-blue), var(--purple));
-    transform: translateX(-50%); opacity: 0.3;
-  }
-  .timeline-item {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 60px; position: relative;
-  }
-  .timeline-item:nth-child(even) { flex-direction: row-reverse; }
-  .timeline-content {
-    width: 45%;
-  }
-  .timeline-dot {
-    width: 20px; height: 20px; background: var(--bg-surface);
-    border: 4px solid var(--cyan); border-radius: 50%;
-    position: absolute; left: 50%; transform: translateX(-50%);
-    box-shadow: 0 0 20px var(--cyan);
-    z-index: 2;
-  }
-
-  /* ── 8. ARCHITECTURE ── */
-  .arch-diagram {
-    display: flex; flex-direction: column; align-items: center; gap: 40px;
-    padding: 60px; background: var(--glass-bg); border-radius: 32px; border: 1px solid var(--glass-border);
-  }
-  .arch-node {
-    background: var(--bg-surface); border: 1px solid var(--glass-border);
-    padding: 20px 40px; border-radius: 100px; font-family: 'Outfit', sans-serif;
-    font-weight: 600; font-size: 1.1rem; color: var(--text-primary);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05); z-index: 2; position: relative;
+  /* ── 2. EMOTIONAL STATS ── */
+  .stat-block {
     text-align: center;
+    padding: 40px 20px;
   }
-  .arch-node.core {
-    background: linear-gradient(135deg, var(--sbi-blue), var(--purple));
-    border: none; transform: scale(1.1); font-size: 1.3rem; color: #fff;
+  .stat-huge {
+    font-size: 6rem;
+    font-weight: 800;
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 16px;
+    letter-spacing: -2px;
   }
-  .arch-node-sub { font-size: 0.85rem; font-weight: 400; color: var(--text-secondary); margin-top: 4px; }
-  .arch-node.core .arch-node-sub { color: rgba(255,255,255,0.8); }
-
-  .arch-flow {
-    width: 2px; height: 60px; background: linear-gradient(to bottom, var(--cyan) 50%, transparent 50%);
-    background-size: 100% 20px; animation: dataFlow 1s linear infinite; margin: -40px 0; opacity: 0.7;
-  }
-  .arch-row { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
-
-  @keyframes dataFlow {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 20px; }
-  }
-
-  /* ── 12. ROADMAP TIMELINE ── */
-  .roadmap-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    position: relative;
-    max-width: 1000px;
+  .stat-huge span { font-size: 4rem; color: var(--sbi-blue); }
+  .stat-label {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 250px;
     margin: 0 auto;
-    padding: 40px 0;
+    font-weight: 400;
   }
-  .roadmap-line {
-    position: absolute;
-    top: 36px;
-    left: 40px;
-    right: 40px;
-    height: 3px;
-    background: var(--glass-border);
-    z-index: 1;
-  }
-  .roadmap-progress {
-    position: absolute;
-    top: 36px;
-    left: 40px;
-    width: 0%; /* Will animate in JS */
-    height: 3px;
-    background: linear-gradient(90deg, var(--sbi-blue), var(--cyan));
-    z-index: 2;
-    transition: width 1.5s ease-out;
-  }
-  .roadmap-step {
+
+  /* ── 3. CURRENT JOURNEY FLOW ── */
+  .simple-flow {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
-    z-index: 3;
-    width: 140px;
-    text-align: center;
-  }
-  .roadmap-icon {
-    width: 72px; height: 72px;
-    background: var(--bg-surface);
-    border: 2px solid var(--glass-border);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 24px;
-    transition: all 0.4s;
-  }
-  .roadmap-step:hover .roadmap-icon {
-    transform: scale(1.1);
-    border-color: var(--cyan);
-    box-shadow: var(--glow-cyan);
-  }
-  .roadmap-icon.active {
-    border-color: var(--cyan);
-    box-shadow: var(--glow-cyan);
-    background: var(--glass-bg);
-  }
-  .roadmap-title {
+    gap: 24px;
     font-family: 'Outfit', sans-serif;
-    font-weight: 700;
+    font-size: 2rem;
+    font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 8px;
-    font-size: 1.1rem;
   }
-  .roadmap-desc {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
+  .flow-arrow {
+    color: var(--text-muted);
+    animation: bounce 2s infinite;
+  }
+  .flow-end {
+    color: var(--rose);
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
   }
 
-  /* ── 13. SUBMISSION TABLE ── */
+  /* ── 4. WHY SAKHA? ── */
+  .sakha-meaning {
+    font-size: 5rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.2;
+    margin-bottom: 40px;
+  }
+  .sakha-word { color: var(--sbi-blue); }
+
+  /* ── 6. CHATGPT VS SAKHA ── */
+  .compare-table {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0 16px;
+  }
+  .compare-table th {
+    font-size: 1.5rem;
+    padding: 24px;
+    text-align: left;
+    border-bottom: 2px solid var(--glass-border);
+  }
+  .compare-table th:nth-child(2) { color: var(--cyan); font-family: 'Outfit', sans-serif;}
+  .compare-table td {
+    padding: 24px;
+    font-size: 1.25rem;
+    background: var(--glass-bg);
+  }
+  .compare-table td:first-child {
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    color: var(--text-muted);
+    width: 45%;
+  }
+  .compare-table td:last-child {
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  /* ── 8. CUSTOMER STORY (Rahul) ── */
+  .story-line {
+    border-left: 2px dashed var(--glass-border);
+    padding-left: 48px;
+    margin-left: 24px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .story-step {
+    position: relative;
+    margin-bottom: 64px;
+  }
+  .story-step:last-child { margin-bottom: 0; }
+  .story-dot {
+    position: absolute;
+    left: -61px;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    background: var(--bg-surface);
+    border: 4px solid var(--sbi-blue);
+    border-radius: 50%;
+  }
+  .story-title { font-size: 2rem; font-weight: 700; margin-bottom: 8px; font-family: 'Outfit', sans-serif;}
+  .story-desc { font-size: 1.25rem; color: var(--text-secondary); }
+
+  /* ── 9. CLEAN ARCHITECTURE ── */
+  .clean-arch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    font-family: 'Outfit', sans-serif;
+  }
+  .arch-box {
+    padding: 24px 64px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 100px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 300px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+  .arch-box.core {
+    background: linear-gradient(135deg, var(--cyan), var(--sbi-blue));
+    color: #000;
+    border: none;
+    box-shadow: var(--glow-sbi);
+  }
+
+  /* ── 11. BUSINESS IMPACT (UP/DOWN) ── */
+  .metric-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 40px;
+    background: var(--glass-bg);
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s;
+  }
+  .metric-box:hover { border-color: var(--glass-hover); }
+  .metric-icon { font-size: 3rem; font-weight: 900; }
+  .metric-icon.up { color: var(--emerald); }
+  .metric-icon.down { color: var(--rose); }
+  .metric-text { font-size: 1.5rem; font-weight: 600; font-family: 'Outfit', sans-serif; color: var(--text-primary); }
+  
+  /* ── 12. ROADMAP ── */
+  .roadmap-clean {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .roadmap-clean::before {
+    content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 2px;
+    background: var(--glass-border); z-index: 0;
+  }
+  .roadmap-point {
+    background: var(--bg-surface);
+    padding: 16px 32px;
+    border: 2px solid var(--glass-border);
+    border-radius: 100px;
+    position: relative;
+    z-index: 1;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--text-muted);
+  }
+  .roadmap-point.active {
+    border-color: var(--cyan);
+    color: var(--text-primary);
+    box-shadow: var(--glow-cyan);
+  }
+  .roadmap-point.future {
+    background: linear-gradient(135deg, var(--sbi-blue), var(--purple));
+    color: #fff;
+    border: none;
+  }
+  
+  /* ── 14. SUBMISSION TABLE ── */
   .sub-grid {
     display: grid; grid-template-columns: 300px 1fr; gap: 24px;
     border-bottom: 1px solid var(--glass-border); padding: 24px 0;
   }
   .sub-label { font-family: 'Outfit', sans-serif; color: var(--text-muted); font-size: 1.1rem; }
   .sub-value { font-weight: 500; color: var(--text-primary); font-size: 1.1rem; }
+  
+  .icon-box {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    background: rgba(255, 255, 255, 0.05);
+  }
 
-  /* ── ANIMATIONS (AOS Style) ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  /* ── ANIMATIONS ── */
+  .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.active { opacity: 1; transform: translateY(0); }
   .delay-1 { transition-delay: 0.1s; }
   .delay-2 { transition-delay: 0.2s; }
   .delay-3 { transition-delay: 0.3s; }
   .delay-4 { transition-delay: 0.4s; }
-
-  /* ── STAT COUNTERS ── */
-  .stat-number {
-    font-family: 'Outfit', sans-serif; font-size: 4rem; font-weight: 900;
-    background: linear-gradient(135deg, var(--text-primary), var(--cyan));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    line-height: 1; margin-bottom: 8px;
-  }
+  .delay-5 { transition-delay: 0.5s; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 992px) {
-    .hero-title { font-size: 4rem; }
-    .timeline::before { left: 30px; }
-    .timeline-item, .timeline-item:nth-child(even) { flex-direction: column; align-items: flex-start; padding-left: 80px; }
-    .timeline-content { width: 100%; }
-    .timeline-dot { left: 30px; }
+    section { padding: 80px 0; }
+    .hero-title-main { font-size: 5rem; letter-spacing: -3px; }
+    .hero-tagline { font-size: 2rem; }
+    .sakha-meaning { font-size: 3rem; }
+    .roadmap-clean { flex-direction: column; gap: 40px; }
+    .roadmap-clean::before { left: 50%; top: 0; bottom: 0; width: 2px; height: auto; }
+    .compare-table td, .compare-table th { font-size: 1rem; padding: 16px; }
     .sub-grid { grid-template-columns: 1fr; gap: 8px; }
-    .roadmap-container { flex-direction: column; align-items: flex-start; padding-left: 40px; }
-    .roadmap-line { top: 40px; bottom: 40px; left: 75px; width: 3px; height: auto; }
-    .roadmap-progress { top: 40px; left: 75px; width: 3px; height: 0%; transition: height 1.5s ease-out; }
-    .roadmap-step { flex-direction: row; width: 100%; text-align: left; margin-bottom: 40px; }
-    .roadmap-icon { margin-bottom: 0; margin-right: 24px; flex-shrink: 0; }
+    .stat-huge { font-size: 4rem; }
+    .stat-huge span { font-size: 2.5rem; }
   }
 </style>
 </head>
@@ -423,117 +434,137 @@
 
 <div class="bg-glows"></div>
 
-<!-- THEME TOGGLE BUTTON -->
-<button id="themeToggle" class="theme-btn" aria-label="Toggle Dark/Light Theme">
-  <i data-lucide="moon" id="themeIcon"></i>
+<!-- THEME TOGGLE -->
+<button id="themeToggle" class="theme-btn" aria-label="Toggle Theme">
+  <i data-lucide="sun" id="themeIcon"></i>
 </button>
 
 <!-- 1. HERO -->
 <section class="hero-section">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <span class="brand-font" style="color:var(--cyan); letter-spacing:4px; text-transform:uppercase; font-size:14px;">Introducing</span>
-        <h1 class="hero-title reveal">SBI SAKHA <span class="text-gradient-sbi">AI</span></h1>
-        <h2 class="hero-subtitle reveal delay-1">Your Intelligent Banking Companion</h2>
-        <p class="hero-desc reveal delay-2">
-          An Agentic AI platform that transforms customer acquisition, digital adoption, and customer engagement through autonomous, intelligent banking agents.
+      <div class="col-lg-12">
+        <span class="hero-intro reveal">Introducing</span>
+        <h1 class="hero-title-main text-gradient-sbi reveal delay-1">SAKHA AI</h1>
+        <h2 class="hero-tagline reveal delay-2">
+          Banking that Thinks.<br>
+          Banking that Guides.<br>
+          Banking that Grows with You.
+        </h2>
+        <p class="hero-desc reveal delay-3">
+          An Agentic Banking Companion designed to seamlessly orchestrate your entire financial life.
         </p>
-        <div class="reveal delay-3">
-          <a href="#vision" class="btn-primary">Explore Vision <i data-lucide="arrow-down" style="width:18px; margin-left:8px; vertical-align:middle;"></i></a>
-        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 2. THE PROBLEM -->
-<section id="problem">
+<!-- 2. EMOTIONAL STATS -->
+<section style="padding-top: 40px; border:none;">
   <div class="container">
-    <div class="section-header reveal">
-      <h2>The Banking <span class="text-gradient">Friction</span></h2>
-      <p>Why digital adoption stagnates and customers feel disconnected.</p>
-    </div>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-3 reveal delay-1">
-        <div class="glass-card">
-          <div class="icon-box" style="color:var(--rose);"><i data-lucide="bar-chart-3" size="32"></i></div>
-          <h3>Basic Usage Only</h3>
-          <p>Customers use apps merely for balance checks, ignoring 90% of wealth-building features.</p>
-        </div>
+    <div class="row reveal">
+      <div class="col-md-4 stat-block">
+        <div class="stat-huge stat-counter" data-target="68">0<span>%</span></div>
+        <div class="stat-label">Customers never use investment products</div>
       </div>
-      <div class="col-md-6 col-lg-3 reveal delay-2">
-        <div class="glass-card">
-          <div class="icon-box" style="color:var(--amber);"><i data-lucide="alert-triangle" size="32"></i></div>
-          <h3>Decision Paralysis</h3>
-          <p>Low financial literacy causes customers to abandon loan applications due to complex jargon.</p>
-        </div>
+      <div class="col-md-4 stat-block">
+        <div class="stat-huge stat-counter" data-target="82">0<span>%</span></div>
+        <div class="stat-label">Customers desperately need financial guidance</div>
       </div>
-      <div class="col-md-6 col-lg-3 reveal delay-3">
-        <div class="glass-card">
-          <div class="icon-box" style="color:var(--purple);"><i data-lucide="wifi-off" size="32"></i></div>
-          <h3>Low Digital Trust</h3>
-          <p>Rural customers prefer branch visits because existing apps lack conversational vernacular guidance.</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3 reveal delay-4">
-        <div class="glass-card">
-          <div class="icon-box" style="color:var(--cyan);"><i data-lucide="clock" size="32"></i></div>
-          <h3>Reactive Support</h3>
-          <p>Banks struggle to engage proactively, waiting for customers to ask rather than anticipating needs.</p>
-        </div>
+      <div class="col-md-4 stat-block">
+        <div class="stat-huge stat-counter" data-target="40">0<span>%</span></div>
+        <div class="stat-label">Users abandon digital journeys due to friction</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 3. WHY EXISTING APPS FAIL -->
+<!-- 3. CURRENT JOURNEY -->
 <section>
-  <div class="container">
+  <div class="container text-center">
     <div class="section-header reveal">
-      <h2>The Paradigm <span class="text-gradient">Shift</span></h2>
-      <p>Moving from static interfaces to autonomous intelligence.</p>
+      <h2>The <span class="text-gradient">Current Journey</span></h2>
+      <p>Why standard banking apps are losing engagement.</p>
     </div>
-    <div class="row justify-content-center reveal delay-1">
-      <div class="col-lg-8">
-        <div class="glass-card" style="padding: 24px 48px;">
-          <div class="comparison-row">
-            <div class="comp-left">Traditional Apps</div><div class="comp-vs">VS</div><div class="comp-right">SBI SAKHA AI</div>
-          </div>
-          <div class="comparison-row">
-            <div class="comp-left">Reactive Menus</div><div class="comp-vs">VS</div><div class="comp-right">Proactive Guidance</div>
-          </div>
-          <div class="comparison-row">
-            <div class="comp-left">Generic Products</div><div class="comp-vs">VS</div><div class="comp-right">Hyper-Personalized</div>
-          </div>
-          <div class="comparison-row">
-            <div class="comp-left">Static FAQ Bots</div><div class="comp-vs">VS</div><div class="comp-right">Financial Coach</div>
-          </div>
-          <div class="comparison-row">
-            <div class="comp-left">Amnesia (No Memory)</div><div class="comp-vs">VS</div><div class="comp-right">Persistent Customer Memory</div>
-          </div>
-        </div>
-      </div>
+    <div class="simple-flow reveal delay-1">
+      <div>Open Account</div>
+      <i data-lucide="arrow-down" class="flow-arrow" size="32"></i>
+      <div>Use UPI</div>
+      <i data-lucide="arrow-down" class="flow-arrow" size="32"></i>
+      <div>Never Explore</div>
+      <i data-lucide="arrow-down" class="flow-arrow" size="32"></i>
+      <div class="flow-end">Bank loses engagement</div>
     </div>
   </div>
 </section>
 
-<!-- 4. INTRODUCING / VISION -->
+<!-- 4. WHY SAKHA? -->
+<section>
+  <div class="container text-center reveal">
+    <h2 class="sakha-meaning">
+      <span class="sakha-word">SAKHA</span> means<br>
+      Friend.<br>
+      Guide.<br>
+      Trusted Companion.<br>
+      Mentor.
+    </h2>
+    <p style="font-size: 1.5rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.8;">
+      Exactly what banking should become. This shifts the paradigm from a transactional interface to a lifelong relationship.
+    </p>
+  </div>
+</section>
+
+<!-- 5. VISION -->
 <section id="vision">
   <div class="container text-center">
     <div class="row justify-content-center">
-      <div class="col-lg-8 reveal">
-        <i data-lucide="cpu" size="64" style="color:var(--cyan); margin-bottom:24px;"></i>
-        <h2 style="font-size:3.5rem; font-weight:800; margin-bottom:24px;">This is <span style="color:var(--rose)">NOT</span> a chatbot.</h2>
-        <p style="font-size:1.5rem; color:var(--text-primary); font-weight:300; line-height:1.8;">
-          This is an <strong style="color:var(--cyan)">Agentic Banking Companion</strong>. SAKHA orchestrates a network of specialized AI employees that don't just answer questions—they execute workflows, remember your goals, and act on your behalf.
-        </p>
+      <div class="col-lg-10 reveal">
+        <h2 style="font-size:4rem; font-weight:800; margin-bottom:16px;">This is <span style="color:var(--rose)">NOT</span> a chatbot.</h2>
+        <h2 style="font-size:4rem; font-weight:800; color:var(--cyan);">This is an Agentic Banking Companion.</h2>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 5. ECOSYSTEM -->
+<!-- 6. WHY NOT CHATGPT? -->
+<section>
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Why not <span class="text-gradient">ChatGPT?</span></h2>
+      <p>The difference between a generic wrapper and a true banking agent.</p>
+    </div>
+    <div class="reveal delay-1">
+      <table class="compare-table">
+        <tr>
+          <th>Generic AI</th>
+          <th>SBI SAKHA AI</th>
+        </tr>
+        <tr>
+          <td>Generic</td>
+          <td>SBI Specific</td>
+        </tr>
+        <tr>
+          <td>No Banking Context</td>
+          <td>Banking Knowledge</td>
+        </tr>
+        <tr>
+          <td>No Memory</td>
+          <td>Customer Memory</td>
+        </tr>
+        <tr>
+          <td>Reactive</td>
+          <td>Proactive</td>
+        </tr>
+        <tr>
+          <td>No Banking APIs</td>
+          <td>Integrated Banking</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 7. ECOSYSTEM -->
 <section>
   <div class="container">
     <div class="section-header reveal">
@@ -593,248 +624,138 @@
   </div>
 </section>
 
-<!-- 6 & 7. CUSTOMER STORY & SCENARIOS -->
+<!-- 8. CUSTOMER STORY (Rahul) -->
 <section>
   <div class="container">
     <div class="section-header reveal">
-      <h2>A Day in the Life of <span class="text-gradient">SAKHA</span></h2>
-      <p>Watch how the AI ecosystem orchestrates Rahul's financial journey.</p>
+      <h2>One <span class="text-gradient">Story</span></h2>
+      <p>People remember stories, not features. Meet Rahul.</p>
     </div>
     
-    <div class="timeline">
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content glass-card" style="padding: 24px;">
-          <h3 style="color:var(--sbi-blue)"><i data-lucide="user-plus" size="20" style="margin-right:8px; vertical-align:middle;"></i> Account Opening</h3>
-          <p>Rahul wants to open an account. <strong>Aarambh</strong> welcomes him in Hindi, scans his Aadhar card via WhatsApp, and sets up his account in 3 minutes.</p>
-        </div>
+    <div class="story-line reveal delay-1">
+      <div class="story-step">
+        <div class="story-dot"></div>
+        <div class="story-title">Rahul joins SBI</div>
       </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content glass-card" style="padding: 24px;">
-          <h3 style="color:var(--emerald)"><i data-lucide="wallet" size="20" style="margin-right:8px; vertical-align:middle;"></i> Salary Credited</h3>
-          <p>First salary hits the account. <strong>Mitra</strong> detects the deposit and proactively congratulates him, suggesting he allocate 20% to savings.</p>
-        </div>
+      <div class="story-step">
+        <div class="story-dot"></div>
+        <div class="story-title" style="color:var(--cyan)">AI Welcomes Him</div>
       </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content glass-card" style="padding: 24px;">
-          <h3 style="color:var(--purple)"><i data-lucide="pie-chart" size="20" style="margin-right:8px; vertical-align:middle;"></i> Goal Planning</h3>
-          <p>Rahul mentions he wants to buy a car. <strong>Nivesh</strong> instantly calculates the required SIP amount and sets up an auto-debit mutual fund plan.</p>
-        </div>
+      <div class="story-step">
+        <div class="story-dot"></div>
+        <div class="story-title">Helps KYC</div>
       </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content glass-card" style="padding: 24px;">
-          <h3 style="color:var(--amber)"><i data-lucide="home" size="20" style="margin-right:8px; vertical-align:middle;"></i> Home Loan</h3>
-          <p>Two years later, Rahul asks about houses. <strong>Pragati</strong> reviews his transaction history, instantly pre-approves an EMI, and initiates the loan.</p>
-        </div>
+      <div class="story-step">
+        <div class="story-dot"></div>
+        <div class="story-title" style="color:var(--emerald)">Salary Credited</div>
       </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content glass-card" style="padding: 24px;">
-          <h3 style="color:var(--rose)"><i data-lucide="shield-alert" size="20" style="margin-right:8px; vertical-align:middle;"></i> Fraud Detected</h3>
-          <p>An anomalous overseas transaction occurs. <strong>Suraksha</strong> instantly freezes the card and triggers a voice call to Rahul to confirm the action.</p>
-        </div>
+      <div class="story-step">
+        <div class="story-dot"></div>
+        <div class="story-title">Suggests SIP</div>
+      </div>
+      <div class="story-step">
+        <div class="story-dot"></div>
+        <div class="story-title" style="color:var(--rose)">Detects Fraud</div>
+      </div>
+      <div class="story-step">
+        <div class="story-dot"></div>
+        <div class="story-title">Helps Home Loan</div>
+      </div>
+      <div class="story-step">
+        <div class="story-dot"></div>
+        <div class="story-title" style="color:var(--purple)">Retirement Planning</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 8. BUSINESS IMPACT -->
+<!-- 9. CLEAN ARCHITECTURE -->
 <section>
-  <div class="container">
-    <div class="section-header reveal">
-      <h2>Business <span class="text-gradient">Impact</span></h2>
-      <p>Future forecasted metrics at an enterprise scale.</p>
-    </div>
-    <div class="row g-4 text-center">
-      <div class="col-lg-4 col-md-6 reveal delay-1">
-        <div class="glass-card" style="padding: 48px 24px;">
-          <div class="stat-number" data-target="300">0</div>
-          <h3 style="color:var(--emerald);">% Increase</h3>
-          <p>In Cross-Selling & Upselling</p>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 reveal delay-2">
-        <div class="glass-card" style="padding: 48px 24px;">
-          <div class="stat-number" data-target="80">0</div>
-          <h3 style="color:var(--sbi-blue);">% Reduction</h3>
-          <p>In Level-1 Support Costs</p>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-12 reveal delay-3">
-        <div class="glass-card" style="padding: 48px 24px;">
-          <div class="stat-number" data-target="65">0</div>
-          <h3 style="color:var(--purple);">% Drop</h3>
-          <p>In Onboarding Drop-offs</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 9. ARCHITECTURE -->
-<section>
-  <div class="container">
+  <div class="container text-center">
     <div class="section-header reveal">
       <h2>Technology <span class="text-gradient">Architecture</span></h2>
-      <p>Built on robust Agentic principles and semantic memory.</p>
+      <p>Clean, simple, highly scalable.</p>
     </div>
-    <div class="arch-diagram reveal">
-      <div class="arch-node">
-        <i data-lucide="smartphone" style="vertical-align:middle; margin-right:8px;"></i> Customer Interfaces
-        <div class="arch-node-sub">Angular Web App / WhatsApp Integration</div>
-      </div>
-      <div class="arch-flow"></div>
-      <div class="arch-node">
-        <i data-lucide="zap" style="vertical-align:middle; margin-right:8px; color:var(--amber)"></i> API Gateway
-        <div class="arch-node-sub">Python FastAPI & WebSockets</div>
-      </div>
-      <div class="arch-flow"></div>
-      <div class="arch-node core">
-        <i data-lucide="brain-circuit" style="vertical-align:middle; margin-right:8px;"></i> LangGraph Agent Orchestrator
-        <div class="arch-node-sub">Maintains State & Routes Intents to Sub-Agents</div>
-      </div>
-      <div class="arch-flow"></div>
-      <div class="arch-row">
-        <div class="arch-node" style="border-color:var(--sbi-blue); font-size:1rem; padding:12px 24px;">🤖 Aarambh <div class="arch-node-sub">KYC</div></div>
-        <div class="arch-node" style="border-color:var(--emerald); font-size:1rem; padding:12px 24px;">🤝 Mitra <div class="arch-node-sub">Retail</div></div>
-        <div class="arch-node" style="border-color:var(--purple); font-size:1rem; padding:12px 24px;">📈 Nivesh <div class="arch-node-sub">Wealth</div></div>
-        <div class="arch-node" style="background:var(--glass-bg); border:1px dashed var(--glass-border); font-size:1rem; padding:12px 24px;">+ 3 Agents</div>
-      </div>
-      <div class="arch-flow"></div>
-      <div class="arch-row">
-        <div class="arch-node">
-          <i data-lucide="database" style="vertical-align:middle; margin-right:8px;"></i> Vector DB (Qdrant)
-          <div class="arch-node-sub">RAG Document Embeddings</div>
+    <div class="clean-arch reveal delay-1">
+      <div class="arch-box">Customer</div>
+      <i data-lucide="arrow-down" class="flow-arrow" size="32"></i>
+      <div class="arch-box core">SAKHA AI</div>
+      <i data-lucide="arrow-down" class="flow-arrow" size="32"></i>
+      <div class="arch-box">AI Agents</div>
+      <i data-lucide="arrow-down" class="flow-arrow" size="32"></i>
+      <div class="arch-box">Knowledge</div>
+      <i data-lucide="arrow-down" class="flow-arrow" size="32"></i>
+      <div class="arch-box">SBI APIs</div>
+      <i data-lucide="arrow-down" class="flow-arrow" size="32"></i>
+      <div class="arch-box" style="border-color:var(--emerald); color:var(--emerald);">Response</div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. WHY SBI WINS (BUSINESS IMPACT) -->
+<section>
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Why SBI <span class="text-gradient">Wins</span></h2>
+      <p>What executives actually care about.</p>
+    </div>
+    <div class="row g-4 reveal delay-1">
+      <div class="col-md-4">
+        <div class="metric-box">
+          <div class="metric-icon up">↑</div>
+          <div class="metric-text">Acquisition</div>
         </div>
-        <div class="arch-node">
-          <i data-lucide="server" style="vertical-align:middle; margin-right:8px;"></i> SBI Core Banking
-          <div class="arch-node-sub">Secure API Execution</div>
+      </div>
+      <div class="col-md-4">
+        <div class="metric-box">
+          <div class="metric-icon up">↑</div>
+          <div class="metric-text">Digital Adoption</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="metric-box">
+          <div class="metric-icon up">↑</div>
+          <div class="metric-text">Cross Selling</div>
+        </div>
+      </div>
+      <div class="col-md-4 offset-md-2">
+        <div class="metric-box">
+          <div class="metric-icon down">↓</div>
+          <div class="metric-text">Support Cost</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="metric-box">
+          <div class="metric-icon down">↓</div>
+          <div class="metric-text">Fraud</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 10. TECH STACK -->
+<!-- 11. FUTURE VISION -->
 <section>
-  <div class="container">
+  <div class="container text-center">
     <div class="section-header reveal">
-      <h2>Technology <span class="text-gradient">Stack</span></h2>
-      <p>Enterprise-grade tooling for a production-ready vision.</p>
+      <h2>Future <span class="text-gradient">Vision</span></h2>
+      <p>The roadmap to 2026 and beyond.</p>
     </div>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-3 reveal delay-1">
-        <div class="glass-card text-center">
-          <i data-lucide="layout-template" size="40" style="color:var(--rose); margin-bottom:16px;"></i>
-          <h3>Frontend</h3>
-          <p>Angular 20 (Planned)<br>TypeScript<br>Bootstrap</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3 reveal delay-2">
-        <div class="glass-card text-center">
-          <i data-lucide="server" size="40" style="color:var(--sbi-blue); margin-bottom:16px;"></i>
-          <h3>Backend</h3>
-          <p>Python<br>FastAPI<br>WebSockets</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3 reveal delay-3">
-        <div class="glass-card text-center">
-          <i data-lucide="sparkles" size="40" style="color:var(--purple); margin-bottom:16px;"></i>
-          <h3>AI Core</h3>
-          <p>OpenAI<br>LangGraph<br>Qdrant (Vector DB)</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3 reveal delay-4">
-        <div class="glass-card text-center">
-          <i data-lucide="cloud" size="40" style="color:var(--cyan); margin-bottom:16px;"></i>
-          <h3>Infrastructure</h3>
-          <p>Azure<br>Docker<br>PostgreSQL</p>
-        </div>
-      </div>
-    </div>
-    <div class="text-center mt-5 reveal">
-      <p style="font-size:0.9rem; color:var(--text-muted);">* Note: This presentation is a Product Vision prototype. Angular will be utilized fully during the development phase.</p>
+    <div class="roadmap-clean reveal delay-1">
+      <div class="roadmap-point active">Idea</div>
+      <div class="roadmap-point">Prototype</div>
+      <div class="roadmap-point">Pilot</div>
+      <div class="roadmap-point">Rollout</div>
+      <div class="roadmap-point future">Every SBI Customer</div>
     </div>
   </div>
 </section>
 
-<!-- 11. COMMERCIAL POTENTIAL -->
+<!-- 12. IDEA SUBMISSION DETAILS -->
 <section>
   <div class="container">
     <div class="section-header reveal">
-      <h2>Commercial <span class="text-gradient">Potential</span></h2>
-      <p>How SBI scales this ecosystem into a revenue engine.</p>
-    </div>
-    <div class="row g-4">
-      <div class="col-md-6 reveal delay-1">
-        <div class="glass-card">
-          <h3 style="color:var(--sbi-blue);"><i data-lucide="building" size="24" style="vertical-align:middle; margin-right:8px;"></i> Enterprise SaaS & White Labeling</h3>
-          <p>The underlying LangGraph architecture can be white-labeled for subsidiaries like <strong>SBI Life</strong>, <strong>SBI Mutual Fund</strong>, and <strong>SBI General Insurance</strong>, creating a unified cross-platform AI network.</p>
-        </div>
-      </div>
-      <div class="col-md-6 reveal delay-2">
-        <div class="glass-card">
-          <h3 style="color:var(--emerald);"><i data-lucide="network" size="24" style="vertical-align:middle; margin-right:8px;"></i> API Platform Expansion</h3>
-          <p>Expose SAKHA agents as API endpoints for government banking, NBFC integrations, and rural financial inclusion programs, driving massive ROI at scale.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 12. ROADMAP (Horizontal Timeline UI) -->
-<section>
-  <div class="container">
-    <div class="section-header reveal">
-      <h2>Product <span class="text-gradient">Roadmap</span></h2>
-      <p>The path to national scale.</p>
-    </div>
-    <div class="roadmap-container reveal delay-1" id="roadmapContainer">
-      <div class="roadmap-line"></div>
-      <div class="roadmap-progress" id="roadmapProgress"></div>
-      
-      <div class="roadmap-step">
-        <div class="roadmap-icon active" style="color:var(--sbi-blue);"><i data-lucide="lightbulb" size="32"></i></div>
-        <div class="roadmap-title">1. Idea</div>
-        <div class="roadmap-desc">Hackathon Concept</div>
-      </div>
-      
-      <div class="roadmap-step">
-        <div class="roadmap-icon" style="color:var(--purple);"><i data-lucide="code" size="32"></i></div>
-        <div class="roadmap-title">2. Prototype</div>
-        <div class="roadmap-desc">Angular + FastAPI Build</div>
-      </div>
-      
-      <div class="roadmap-step">
-        <div class="roadmap-icon" style="color:var(--cyan);"><i data-lucide="users" size="32"></i></div>
-        <div class="roadmap-title">3. Pilot</div>
-        <div class="roadmap-desc">Limited User Testing</div>
-      </div>
-      
-      <div class="roadmap-step">
-        <div class="roadmap-icon" style="color:var(--emerald);"><i data-lucide="building-2" size="32"></i></div>
-        <div class="roadmap-title">4. SBI Rollout</div>
-        <div class="roadmap-desc">Phased Launch</div>
-      </div>
-      
-      <div class="roadmap-step">
-        <div class="roadmap-icon" style="color:var(--amber);"><i data-lucide="globe" size="32"></i></div>
-        <div class="roadmap-title">5. National Scale</div>
-        <div class="roadmap-desc">Millions of Users</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 13. IDEA SUBMISSION DETAILS -->
-<section>
-  <div class="container">
-    <div class="section-header reveal">
-      <h2>Hackathon <span class="text-gradient">Submission Details</span></h2>
-      <p>Official registry data for the SBI Hackathon 2026.</p>
+      <h2>Hackathon <span class="text-gradient">Details</span></h2>
     </div>
     <div class="glass-card reveal">
       <div class="sub-grid">
@@ -851,19 +772,15 @@
       </div>
       <div class="sub-grid">
         <div class="sub-label">Brief Description</div>
-        <div class="sub-value">An orchestrated ecosystem of specialized AI agents acting as dedicated branch managers for every customer, ensuring seamless digital adoption and hyper-personalized engagement.</div>
+        <div class="sub-value">An orchestrated ecosystem of specialized AI agents acting as dedicated Agentic Banking Companions for every customer.</div>
       </div>
       <div class="sub-grid">
-        <div class="sub-label">Proposed Solution & Commercial Potential</div>
-        <div class="sub-value">Deflects 80% of support costs and increases cross-sell by 3x. Highly scalable as an Enterprise SaaS platform for SBI subsidiaries (SBI Life, Mutual Fund).</div>
+        <div class="sub-label">Proposed Solution</div>
+        <div class="sub-value">Deflects support costs and exponentially increases cross-selling. Highly scalable Enterprise SaaS platform.</div>
       </div>
       <div class="sub-grid">
         <div class="sub-label">Technology Stack</div>
         <div class="sub-value">Angular, Python, FastAPI, LangGraph, OpenAI, Azure, PostgreSQL.</div>
-      </div>
-      <div class="sub-grid">
-        <div class="sub-label">Process Flow & Architecture</div>
-        <div class="sub-value">Client → FastAPI Gateway → LangGraph Supervisor → Specialized Agents → Vector DB / SBI Core APIs.</div>
       </div>
       <div class="sub-grid">
         <div class="sub-label">Demo Video Link</div>
@@ -877,94 +794,61 @@
   </div>
 </section>
 
-<!-- 14. WHY SBI -->
-<section>
+<!-- 13. CLOSING -->
+<section style="min-height:90vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; border:none; padding:0;">
   <div class="container">
-    <div class="section-header reveal">
-      <h2>Why SBI Should <span class="text-gradient">Build This</span></h2>
-    </div>
-    <div class="row justify-content-center text-center">
-      <div class="col-lg-8">
-        <h3 class="reveal delay-1" style="font-size:2rem; font-weight:300; margin-bottom:24px;">Because customers need <strong class="text-gradient-sbi">guidance.</strong></h3>
-        <h3 class="reveal delay-2" style="font-size:2rem; font-weight:300; margin-bottom:24px;">Because AI should <strong class="text-gradient-sbi">educate.</strong></h3>
-        <h3 class="reveal delay-3" style="font-size:2rem; font-weight:300; margin-bottom:24px;">Because banking should be <strong class="text-gradient-sbi">proactive.</strong></h3>
-        <h3 class="reveal delay-4" style="font-size:2rem; font-weight:300; margin-bottom:24px;">Because <strong class="text-gradient-sbi">trust matters.</strong></h3>
-        <h3 class="reveal delay-5" style="font-size:2.5rem; font-weight:700; margin-top:40px; color:var(--cyan);">Because every customer deserves a financial companion.</h3>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 15. CLOSING -->
-<section style="min-height:80vh; display:flex; align-items:center; text-align:center; border:none;">
-  <div class="container">
-    <h2 class="reveal" style="font-size:2.5rem; font-weight:300; margin-bottom:48px; line-height:1.4;">
-      Imagine an SBI where every customer has an<br>intelligent banking companion.
-    </h2>
-    <h1 class="reveal delay-1" style="font-size:6rem; font-weight:900; letter-spacing:-2px; margin-bottom:24px;">
-      SBI SAKHA <span class="text-gradient-sbi">AI</span>
+    <h1 class="reveal" style="font-size:5rem; font-weight:800; line-height:1.2; letter-spacing:-2px; margin-bottom:80px; max-width:1100px; margin-left:auto; margin-right:auto;">
+      Imagine an SBI where<br>
+      every customer<br>
+      has a trusted<br>
+      <span class="text-gradient-sbi">Agentic Banking Companion.</span>
     </h1>
-    <h3 class="reveal delay-2" style="font-size:1.5rem; font-weight:400; color:var(--text-muted);">
-      Banking that Thinks. <span style="color:var(--sbi-blue)">•</span> Banking that Guides. <span style="color:var(--sbi-blue)">•</span> Banking that Grows with You.
-    </h3>
+    
+    <h2 class="reveal delay-1" style="font-size:4rem; font-weight:900; margin-bottom:16px;">SBI SAKHA AI</h2>
+    <h3 class="reveal delay-2" style="font-size:2rem; font-weight:300; color:var(--text-secondary);">Coming Soon</h3>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer style="text-align:center; padding:40px 0; border-top:1px solid var(--glass-border); margin-top:80px;">
+<footer style="text-align:center; padding:40px 0; border-top:1px solid var(--glass-border);">
   <p style="font-size:1rem; color:var(--text-secondary); margin-bottom:12px;">
     Made with <i data-lucide="heart" size="16" style="color:var(--rose); vertical-align:middle; fill:var(--rose);"></i> by Mahesh Morde
   </p>
   <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:12px;">
     <i data-lucide="phone" size="14" style="vertical-align:middle; margin-right:4px;"></i> +91 9766228503
   </p>
-  <a href="https://github.com/mahesh-morde" target="_blank" style="display:inline-flex; align-items:center; gap:8px; color:var(--text-primary); text-decoration:none; font-size:0.9rem; padding:8px 16px; background:var(--glass-bg); border-radius:100px; border:1px solid var(--glass-border); transition:0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.05);" onmouseover="this.style.borderColor='var(--cyan)'" onmouseout="this.style.borderColor='var(--glass-border)'">
+  <a href="https://github.com/mahesh-morde" target="_blank" style="display:inline-flex; align-items:center; gap:8px; color:var(--text-primary); text-decoration:none; font-size:0.9rem; padding:8px 16px; background:var(--glass-bg); border-radius:100px; border:1px solid var(--glass-border); transition:0.3s;">
     <i data-lucide="github" size="16"></i> GitHub Profile
   </a>
 </footer>
 
 <script>
-  // Initialize Lucide Icons
   lucide.createIcons();
 
-  // Theme Toggle Logic
   const themeToggleBtn = document.getElementById('themeToggle');
   const themeIcon = document.getElementById('themeIcon');
-  let isDarkTheme = false; // Light theme default
+  let isDarkTheme = true; // Dark theme default for cinematic feel
 
   themeToggleBtn.addEventListener('click', () => {
     isDarkTheme = !isDarkTheme;
     if (isDarkTheme) {
-      document.body.setAttribute('data-theme', 'dark');
+      document.body.removeAttribute('data-theme');
       themeIcon.setAttribute('data-lucide', 'sun');
     } else {
-      document.body.removeAttribute('data-theme');
+      document.body.setAttribute('data-theme', 'light');
       themeIcon.setAttribute('data-lucide', 'moon');
     }
     lucide.createIcons();
   });
 
-  // Intersection Observer for Scroll Reveals
   const revealElements = document.querySelectorAll('.reveal');
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
         
-        // Roadmap Animation Trigger
-        if (entry.target.id === 'roadmapContainer') {
-          setTimeout(() => {
-            document.getElementById('roadmapProgress').style.width = '100%';
-            const icons = document.querySelectorAll('.roadmap-icon');
-            icons.forEach((icon, i) => {
-              setTimeout(() => { icon.classList.add('active'); }, i * 350); // Stagger icon activation
-            });
-          }, 300);
-        }
-
-        // Stat Counter Animation
-        if (entry.target.classList.contains('stat-number') || entry.target.querySelector('.stat-number')) {
-          const stat = entry.target.classList.contains('stat-number') ? entry.target : entry.target.querySelector('.stat-number');
+        if (entry.target.classList.contains('stat-counter') || entry.target.querySelector('.stat-counter')) {
+          const stat = entry.target.classList.contains('stat-counter') ? entry.target : entry.target.querySelector('.stat-counter');
           animateValue(stat, 0, parseInt(stat.getAttribute('data-target')), 2000);
           revealObserver.unobserve(entry.target);
         }
@@ -974,18 +858,17 @@
 
   revealElements.forEach(el => revealObserver.observe(el));
 
-  // Number Counter Animation Function
   function animateValue(obj, start, end, duration) {
     let startTimestamp = null;
     const step = (timestamp) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
       const easeOut = 1 - Math.pow(1 - progress, 3);
-      obj.innerHTML = Math.floor(easeOut * (end - start) + start);
+      obj.innerHTML = Math.floor(easeOut * (end - start) + start) + '<span>%</span>';
       if (progress < 1) {
         window.requestAnimationFrame(step);
       } else {
-        obj.innerHTML = end;
+        obj.innerHTML = end + '<span>%</span>';
       }
     };
     window.requestAnimationFrame(step);
